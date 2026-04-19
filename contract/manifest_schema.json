@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SELARIX Lattice Project Manifest",
+  "type": "object",
+  "required": ["project_name", "mode", "priority", "status_file", "inbox"],
+  "properties": {
+    "project_name": { "type": "string" },
+    "mode": { "type": "string", "enum": ["build", "maintain", "low-power", "paused"] },
+    "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+    "voice_config": { "type": "string" },
+    "skill_packs": { "type": "array", "items": { "type": "string" } },
+    "credentials_allowed": { "type": "array", "items": { "type": "string" } },
+    "model_override": { "type": ["string", "null"] },
+    "revenue_target_monthly_usd": { "type": "number" },
+    "status_file": { "type": "string" },
+    "inbox": { "type": "string" },
+    "last_heartbeat": { "type": "string", "format": "date-time" }
+  }
+}

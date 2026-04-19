@@ -1,0 +1,13 @@
+{
+  "project_name": "REPLACE_ME",
+  "mode": "build",
+  "priority": "medium",
+  "voice_config": "toolshed/context/REPLACE_ME_voice_guide.md",
+  "skill_packs": [],
+  "credentials_allowed": [],
+  "model_override": null,
+  "revenue_target_monthly_usd": 0,
+  "status_file": "projects/REPLACE_ME/status/",
+  "inbox": "projects/REPLACE_ME/inbox/",
+  "last_heartbeat": null
+}
