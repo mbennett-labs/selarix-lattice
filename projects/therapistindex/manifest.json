@@ -1,0 +1,26 @@
+{
+  "project_name": "therapistindex",
+  "mode": "maintain",
+  "priority": "high",
+  "voice_config": "/toolshed/context/voice_guides/therapist_index_editorial.md",
+  "skill_packs": [
+    "wordpress_editing",
+    "geodirectory_listings",
+    "yoast_seo",
+    "blog_writing",
+    "affiliate_link_placement",
+    "google_search_console_monitoring",
+    "adsense_monitoring"
+  ],
+  "credentials_allowed": [
+    "wordpress-therapistindex",
+    "gsc-therapistindex",
+    "adsense-therapistindex",
+    "google-places-api"
+  ],
+  "model_override": null,
+  "revenue_target_monthly_usd": 500,
+  "status_file": "/projects/therapistindex/status/",
+  "inbox": "/projects/therapistindex/inbox/",
+  "last_heartbeat": null
+}

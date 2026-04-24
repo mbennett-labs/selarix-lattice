@@ -1,0 +1,40 @@
+{
+  "project_name": "therapistindex",
+  "date": "2026-04-24",
+  "completed": [
+    {
+      "agent": "pre-lattice (Mike + Claude)",
+      "task": "12 blog posts published under Therapist Index Editorial byline",
+      "detail": "Topics: federal layoff therapy, insurance comparison, sliding scale, telehealth, EAP, in-network vs out-of-network, first session prep",
+      "time": "2026-04-24T16:55:51Z"
+    },
+    {
+      "agent": "pre-lattice (Mike + Claude)",
+      "task": "AdSense review submitted",
+      "detail": "Day 9 of review window, 1-4 weeks typical",
+      "time": "2026-04-15T00:00:00Z"
+    }
+  ],
+  "in_progress": [],
+  "blocked": [
+    {
+      "issue": "Google Maps API broken on /places/ page (Maps failed to load)",
+      "needs": "API key restrictions review in Google Cloud Console, WordPress debug",
+      "severity": "medium"
+    },
+    {
+      "issue": "~314 pages Crawled - currently not indexed in Search Console",
+      "needs": "Google Places API enrichment to backfill thin listing pages",
+      "severity": "medium"
+    }
+  ],
+  "revenue_events": [],
+  "flags_for_board": [
+    "2160 pages indexed in Google, 620 distinct queries with impressions, only ~9 clicks/month. Bottleneck is commercial-intent ranking and monetization, not indexing.",
+    "AdSense pending — fallback plan is Ezoic Access Now if rejected"
+  ],
+  "health_signals": {
+    "uptime_pct": 100.0,
+    "agent_errors": 0
+  }
+}

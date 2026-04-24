@@ -1,0 +1,27 @@
+{
+  "project_name": "thebinmap",
+  "mode": "build",
+  "priority": "high",
+  "voice_config": "/toolshed/context/voice_guides/thebinmap_voice.md",
+  "skill_packs": [
+    "directory_scraping",
+    "directory_city_pages",
+    "astro_site_generation",
+    "localbusiness_schema",
+    "facebook_page_scraping",
+    "google_places_api",
+    "affiliate_link_placement"
+  ],
+  "credentials_allowed": [
+    "thebinmap-hostinger",
+    "thebinmap-github",
+    "google-places-api",
+    "web3forms",
+    "gsc-thebinmap"
+  ],
+  "model_override": null,
+  "revenue_target_monthly_usd": 500,
+  "status_file": "/projects/thebinmap/status/",
+  "inbox": "/projects/thebinmap/inbox/",
+  "last_heartbeat": null
+}
