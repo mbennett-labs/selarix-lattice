@@ -227,11 +227,17 @@ def build_running_clean(state: list[dict[str, Any]]) -> list[str]:
         errors = health.get("agent_errors", 0)
 
         if mode == "low-power":
-            suffix = "low-power, no action needed"
+            suffix = "low-power, maintenance only"
+        elif mode == "paused":
+            continue  # paused projects don't appear in running-clean
+        elif mode == "build" and errors == 0:
+            # build-mode projects don't have uptime — report what they have
+            suffix = "build mode, no errors"
         elif uptime is not None and errors == 0:
-            suffix = f"uptime {uptime:.0f}%, 0 errors"
+            uptime_str = f"{uptime:.1f}%" if uptime < 100 else "100%"
+            suffix = f"up {uptime_str}, clean"
         elif errors == 0:
-            suffix = "healthy"
+            suffix = "steady"
         else:
             continue  # if there are errors, it's not "running clean"
 
@@ -264,12 +270,13 @@ def build_momentum(state: list[dict[str, Any]]) -> str:
 
     lines: list[str] = []
     if completed_count > 0:
-        lines.append(f"Shipped {completed_count} task{'s' if completed_count != 1 else ''} across active projects since last digest.")
+        word = "task" if completed_count == 1 else "tasks"
+        lines.append(f"Shipped {completed_count} {word} since last digest.")
     if revenue_total_usd > 0:
         types_str = ", ".join(sorted(revenue_types)) if revenue_types else "mixed"
-        lines.append(f"Revenue events: ${revenue_total_usd:.2f} ({types_str}).")
+        lines.append(f"Revenue: ${revenue_total_usd:.2f} ({types_str}).")
     if not lines:
-        lines.append("Flat since last digest. Reporter loop is the new movement.")
+        lines.append("Flat day. No tasks shipped, no revenue events.")
     return "\n".join(lines)
 
 
@@ -317,9 +324,9 @@ def compose_digest(state: list[dict[str, Any]], git_pull_ok: bool) -> str:
     if ondeck:
         parts.extend(ondeck)
     else:
-        parts.append("→ (nothing in-progress — queue is empty)")
+        parts.append("→ Queue empty. Waiting for Coordinator to assign work.")
 
-    parts.append("\n_Reply with \"go [number]\" to approve, or free-form to redirect. (v1 does not auto-parse replies; v1.5 will.)_")
+    parts.append("\n_Reply to approve or redirect. v1 logs replies; v1.5 will auto-route._")
 
     digest = "\n".join(parts)
 

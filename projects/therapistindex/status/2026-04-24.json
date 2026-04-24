@@ -2,39 +2,19 @@
   "project_name": "therapistindex",
   "date": "2026-04-24",
   "completed": [
-    {
-      "agent": "pre-lattice (Mike + Claude)",
-      "task": "12 blog posts published under Therapist Index Editorial byline",
-      "detail": "Topics: federal layoff therapy, insurance comparison, sliding scale, telehealth, EAP, in-network vs out-of-network, first session prep",
-      "time": "2026-04-24T16:55:51Z"
-    },
-    {
-      "agent": "pre-lattice (Mike + Claude)",
-      "task": "AdSense review submitted",
-      "detail": "Day 9 of review window, 1-4 weeks typical",
-      "time": "2026-04-15T00:00:00Z"
-    }
+    {"agent": "human", "task": "AdSense review submitted", "detail": "Day 9 of 28-day window; author byline changed to 'TherapistIndex Editorial'", "time": "2026-04-15T00:00:00Z"},
+    {"agent": "human", "task": "Published 12 blog posts under 'Therapist Index Editorial' byline", "detail": "DMV-area, insurance-aware voice; topics include federal layoff therapy, insurance comparison, telehealth, EAP", "time": "2026-04-22T00:00:00Z"},
+    {"agent": "human", "task": "Search Console deep-dive completed", "detail": "2,160 pages indexed, 620 queries with impressions, diagnosed bottleneck as commercial-intent ranking not indexing", "time": "2026-04-22T00:00:00Z"}
   ],
-  "in_progress": [],
+  "in_progress": [
+    {"agent": "Builder", "task": "Enrich 2,490 listings via Google Places API", "eta": "2026-04-27"}
+  ],
   "blocked": [
-    {
-      "issue": "Google Maps API broken on /places/ page (Maps failed to load)",
-      "needs": "API key restrictions review in Google Cloud Console, WordPress debug",
-      "severity": "medium"
-    },
-    {
-      "issue": "~314 pages Crawled - currently not indexed in Search Console",
-      "needs": "Google Places API enrichment to backfill thin listing pages",
-      "severity": "medium"
-    }
+    {"issue": "Google Maps API broken on /places/ page", "needs": "2-min API key scope check in GCP console", "severity": "medium"}
   ],
   "revenue_events": [],
   "flags_for_board": [
-    "2160 pages indexed in Google, 620 distinct queries with impressions, only ~9 clicks/month. Bottleneck is commercial-intent ranking and monetization, not indexing.",
-    "AdSense pending — fallback plan is Ezoic Access Now if rejected"
+    "AdSense review Day 9 of 28 — confirm Ezoic Access Now fallback plan if rejected"
   ],
-  "health_signals": {
-    "uptime_pct": 100.0,
-    "agent_errors": 0
-  }
+  "health_signals": {"uptime_pct": 100.0, "agent_errors": 0}
 }

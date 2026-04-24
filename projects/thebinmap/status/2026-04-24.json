@@ -2,33 +2,17 @@
   "project_name": "thebinmap",
   "date": "2026-04-24",
   "completed": [
-    {
-      "agent": "pre-lattice (Mike + Claude)",
-      "task": "Domain registered, repo created, Astro scaffold built",
-      "detail": "thebinmap.com via Hostinger, info@thebinmap.com, github.com/mbennett-labs/thebinmap (private)",
-      "time": "2026-04-18T00:00:00Z"
-    },
-    {
-      "agent": "pre-lattice (Mike + Claude)",
-      "task": "30 seed listings across 25 states, treasure-hunt aesthetic designed",
-      "detail": "Cardboard palette, safety orange, deep teal, Fraunces font, LocalBusiness schema, state pages",
-      "time": "2026-04-18T00:00:00Z"
-    }
+    {"agent": "human", "task": "Domain registered at Hostinger", "detail": "thebinmap.com, $10, info@thebinmap.com email created", "time": "2026-04-18T00:00:00Z"},
+    {"agent": "human", "task": "Private GitHub repo created", "detail": "mbennett-labs/thebinmap, first commit 8f88c3c", "time": "2026-04-18T00:00:00Z"},
+    {"agent": "human", "task": "Market research completed (24-page report)", "detail": "~4,000-6,000 US bin stores, fragmented, consolidating; Yelp outranks national directories for city queries; restock day + $1 day dual-hook model", "time": "2026-04-20T00:00:00Z"}
   ],
-  "in_progress": [],
-  "blocked": [
-    {
-      "issue": "Site scaffold in ephemeral environment, needs repackaging to production repo",
-      "needs": "Builder agent to consolidate, push to mbennett-labs/thebinmap, deploy via Cloudflare Pages",
-      "severity": "medium"
-    }
+  "in_progress": [
+    {"agent": "Builder", "task": "Repackage Astro scaffold from ephemeral Claude session to production repo", "eta": "2026-04-27"}
   ],
+  "blocked": [],
   "revenue_events": [],
   "flags_for_board": [
-    "Market research: ~4000-6000 bin stores nationally, fragmented, consolidating. Yelp outranks every national directory for city queries — that is the SEO lane.",
-    "Monetization plan: AdSense during build, affiliate, paid listings, shopper app, owner SaaS"
+    "Deploy target: Cloudflare Pages vs Hostinger static — decide before Builder pushes scaffold"
   ],
-  "health_signals": {
-    "agent_errors": 0
-  }
+  "health_signals": {"agent_errors": 0}
 }
