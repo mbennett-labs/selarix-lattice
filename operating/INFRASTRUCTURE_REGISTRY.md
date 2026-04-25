@@ -255,3 +255,100 @@ Each of these cost 5-15 min to ask + verify + correct. Total friction: ~30-45 mi
 
 *Infrastructure Registry v1 | SELARIX / Quantum Shield Labs LLC | 2026-04-25*
 *Verified facts only. Update before next ask.*
+
+## Append 2026-04-25 — TheBinMap data layer + email flow
+
+### TheBinMap data architecture (verified today)
+
+**The 522 listings live in SQLite, NOT in JSON.** Earlier project notes incorrectly suggested data was in JSON files. Reality:
+
+| Path | What it is | Use |
+|---|---|---|
+| `data/stores.db` (repo root, NOT src/data) | SQLite database, 1MB, 522 rows | **Production data — what the live site renders** |
+| `src/data/db.ts` | TypeScript loader (uses sql.js) | Reads stores.db at build time |
+| `src/data/listings.json` | 30-store seed file with 25 fabricated placeholders | **Appears unused** — investigate references later, leave for now |
+| `src/data/metros.ts` | City/metro mapping helper | TypeScript, build-time |
+
+**SQLite schema (stores table) — 24 columns:**
+```
+id, google_place_id, name, slug, address, city, state, state_name, zip_code,
+latitude, longitude, phone, website, google_maps_url, facebook_url, hours_json,
+rating, review_count, store_type, description, verified, featured, last_verified, created_at
+```
+
+**Data quality (audited 2026-04-25):**
+| Field | Coverage | Notes |
+|---|---|---|
+| google_place_id | 522/522 (100%) | All from Google Places |
+| address | 522/522 (100%) | Real |
+| latitude / longitude | 522/522 (100%) | Map embedding ready |
+| rating | 497/522 (95%) | Real Google ratings |
+| review_count | 497/522 (95%) | Real |
+| phone | 415/522 (80%) | Real |
+| hours_json | 491/522 (94%) | Structured Google data with weekdayDescriptions array |
+| facebook_url | 0/522 | Empty — Sprint 2 enrichment target |
+| restock_day | N/A — column doesn't exist | Sprint 2 will add |
+| cheapest_day | N/A — column doesn't exist | Sprint 2 will add |
+| photos | N/A — not stored | Sprint 2 will add via Place IDs |
+
+**State concentration:**
+TX (100), OH (90), FL (88), TN (75), VA (48), NC (34), KY (33), AL (15), GA (10), MS (6), IN/MD/SC (4 each), PA (3), AR (2), CA/DC/LA/MA/MI/OK (1 each).
+
+### TheBinMap email infrastructure (verified today)
+
+**Hostinger Free Business Email plan, expires 2027-04-17. 6 mailboxes, all forwarders configured with "Save copies enabled":**
+
+| Mailbox | Forwards to | Keep copy |
+|---|---|---|
+| info@thebinmap.com | mikebennett637@gmail.com | ✅ |
+| michael@thebinmap.com | mikebennett637@gmail.com | ✅ |
+| privacy@thebinmap.com | mikebennett637@gmail.com | ✅ |
+| legal@thebinmap.com | mikebennett637@gmail.com | ✅ |
+| support@thebinmap.com | mikebennett637@gmail.com | ✅ |
+| hello@thebinmap.com | mikebennett637@gmail.com | ✅ |
+
+**Web3Forms submission flow (separate path — does NOT touch Hostinger):**
+```
+User fills form on thebinmap.com
+  → POSTs to api.web3forms.com
+  → Web3Forms sends from notify+xxxxxx@web3forms.com
+  → Direct delivery to mikebennett637@gmail.com
+  (info@thebinmap.com is NOT in this path)
+```
+
+**Web3Forms keys present in 3 source files:**
+- `src/pages/contact.astro`
+- `src/pages/submit.astro`
+- `src/pages/claim.astro` (if claim form uses Web3Forms)
+
+**Email-archive enhancement (parked):** To get form submissions in info@ AND gmail, switch Web3Forms delivery destination to info@thebinmap.com. Hostinger forwarder then handles gmail copy automatically. ~20 min when ready.
+
+### TheBinMap site architecture (verified)
+
+| Aspect | Value |
+|---|---|
+| Framework | Astro 5 (static site generator) |
+| Hosting | Cloudflare Pages, auto-deploys from main branch |
+| GitHub repo | `mbennett-labs/thebinmap` (public) |
+| Local dev | `C:\Users\mikeb\thebinmap`, `pnpm dev` → localhost:4321 |
+| Node version | v22.14.0 |
+| Build artifact | `dist/` (HTML pre-rendered at build time) |
+| AdSense | ✅ Approved + Auto ads ON (as of 2026-04-25) |
+| Search Console | ✅ Verified (Domain property) |
+| DNS | Cloudflare (104.21.84.151, 172.67.194.47) |
+
+### Today's friction inventory update
+
+Friction questions resolved today that should never need re-asking (already in INFRASTRUCTURE_REGISTRY or now documented above):
+
+1. ❓ "Where does the data live — JSON or DB?" → DB at `data/stores.db` (was confused by `src/data/listings.json` seed)
+2. ❓ "Are the 522 listings real?" → Yes, 100% have Google Place IDs and real addresses
+3. ❓ "Does info@thebinmap.com forward?" → Yes, with "Save copies" enabled
+4. ❓ "Where do Web3Forms submissions land?" → mikebennett637@gmail.com directly, bypasses Hostinger
+5. ❓ "Does /stores page exist?" → Yes, alphabetical full-directory listing of all 522
+6. ❓ "Is AdSense approved for TheBinMap?" → Yes, Auto ads now ON
+
+**Friction goal:** zero same-question re-asks in next session. Watch this metric.
+
+---
+

@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "project": "thebinmap",
+  "date": "2026-04-25",
+  "status": "active",
+  "mission_tier": 2,
+  "north_star": "Income directory — fastest near-term revenue path for SELARIX. Two personas: resellers (need restock day + distance) and bargain hunters (need cheapest day + distance).",
+  "current_phase": "enrichment + traffic-building",
+
+  "metrics": {
+    "listings_total": 522,
+    "listings_with_full_data": 415,
+    "states_covered": 21,
+    "search_console_clicks_28d": 0,
+    "search_console_indexed_pages": "TBD — first audit not yet pulled",
+    "adsense_status": "approved + auto-ads ON",
+    "adsense_revenue_to_date": 0
+  },
+
+  "shipped_today": [
+    "Sprint 1 — 4 critical UX bugs fixed + 1 bonus (state name in JSON-LD schema). Files: src/pages/states/index.astro, src/pages/store/[slug].astro. Commits: removed broken jigsaw map, fixed wrong-state in About sentence (44 stores affected), replaced generic tips with /guide link, fixed featured=0 stray render, fixed JSON-LD schema state.",
+    "Sprint 1.5 — 3 visible improvements shipped. Files: src/pages/store/[slug].astro, src/styles/global.css. Commits: rendered hours from hours_json (491/522 listings now show hours + Open/Closed badge), embedded Google Map iframe (522/522 listings get map, no API key), defensive rating display (25/522 with NULL rating now hide stars cleanly).",
+    "Operating discipline — 8 docs in /operating/ (added INFRASTRUCTURE_REGISTRY.md to the 7 from morning).",
+    "Email infrastructure verified — 6 mailboxes + forwarders + Web3Forms delivery flow documented."
+  ],
+
+  "running_clean": [
+    "Site live at thebinmap.com (Cloudflare Pages, auto-deploys from main)",
+    "522 real Google-sourced listings in data/stores.db",
+    "AdSense Auto ads serving on every page",
+    "Contact form delivers to gmail (verified)",
+    "Submit form delivers to gmail (verified)",
+    "Search Console connected, sitemap submitted",
+    "Reporter v1.0.5 daily digest still firing 11 UTC"
+  ],
+
+  "flags_for_board": [
+    {
+      "type": "decision",
+      "summary": "Sprint 2 enrichment script is specced and ready for tomorrow's Claude Code session. Cost: ~$10 one-time. Need Mike to enable Places API on GCP project before run.",
+      "blocking": false,
+      "next_action": "Tomorrow morning: open GCP console, enable Places API on the project that owns the existing thebinmap server key, confirm billing account attached. 5-10 min. Then trigger Claude Code with sprint spec."
+    },
+    {
+      "type": "decision",
+      "summary": "openNow badge currently shows stale value (Google snapshot from April 21, not real-time). Fix is in Sprint 2 spec — replace with client-side computation against periods array.",
+      "blocking": false,
+      "next_action": "Included in Sprint 2."
+    }
+  ],
+
+  "this_week_momentum": [
+    "Two real shipping sprints in one afternoon — surgical, defensive, no scope creep",
+    "Site is meaningfully more useful per visit than 24 hours ago",
+    "Operating layer caught the listings.json/stores.db data confusion before it caused damage tomorrow"
+  ],
+
+  "on_deck": [
+    "Sprint 2 — Google Places enrichment (restock day + cheapest day + photos + facebook_url + real-time openNow). Spec: projects/thebinmap/sprints/SPRINT_2_enrichment_spec.md. Estimated: 2-3 hrs Claude Code execution after GCP setup.",
+    "First traffic-building actions — Reddit (r/Flipping), directory submissions, FB group plug. ~30-45 min when energy is right.",
+    "Social account setup — TikTok + Instagram + FB Page (Tier 1 only). Dedicated 2-hour block when ready to commit to content rhythm.",
+    "Sprint 1.5 follow-up — investigate listings.json references; if unused, delete. Low priority."
+  ],
+
+  "parked": [
+    "Web3Forms delivery → info@thebinmap.com (currently goes only to gmail). ~20 min when revisited. Gmail-only is sufficient for now.",
+    "Listing enrichment claim outreach to top-100 by review_count (Sprint E layer). After Sprint 2 enrichment validates."
+  ],
+
+  "session_meta": {
+    "session_duration_hours": 8,
+    "operator": "Mike Bennett",
+    "ai_collaborator": "Claude Opus 4.7",
+    "session_friction_log": "8 questions asked of Mike that should have been retrievable from operating docs (now captured in INFRASTRUCTURE_REGISTRY append). Goal: zero same-question re-asks tomorrow."
+  }
+}

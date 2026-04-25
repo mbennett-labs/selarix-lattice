@@ -154,3 +154,49 @@ Keep entries terse. The point is searchability and clarity, not narrative.
 
 *Decisions Log v1 | SELARIX / Quantum Shield Labs LLC | 2026-04-25*
 *Decisions live forever. Reasoning is the asset.*
+
+## 2026-04-25 — TheBinMap Saturday Sprint Day
+
+### Decision: TheBinMap deployment status reframed
+**Context:** Previous session notes (and yesterday's writeup) framed TheBinMap as "scaffold ephemeral, needs day-1 ship." Today's audit verified the site is fully deployed and live with 522 listings across 21 states, AdSense approved, Search Console verified. The framing was inaccurate — TheBinMap is operational, not pre-launch.
+**Decision:** Update mental model and project status: TheBinMap is in **enrichment + traffic-building phase**, not build phase.
+**Action taken:** Today's afternoon work focused on UX improvements (Sprint 1 + Sprint 1.5) rather than scaffolding work that didn't need doing.
+
+### Decision: AdSense Auto ads enabled on both directories
+**Context:** TheBinMap AdSense was approved but Auto ads toggle was OFF. TherapistIndex was already running.
+**Decision:** Flip Auto ads ON for both. Income unlocks per visitor immediately.
+**Action taken:** Mike toggled both. Site monetization is now live — no further AdSense work needed until traffic justifies optimization.
+
+### Decision: Per-listing data enrichment is the next major work stream
+**Context:** Audit revealed listing pages were structurally thin (no restock day, no cheapest day, no hours displayed despite hours data existing in SQLite, no embedded map despite lat/lng existing).
+**Decision:** Two-phase approach:
+- **Phase A (today):** Display data we already own. Hours, map, defensive rating handling. No new dependencies, no API costs.
+- **Phase B (tomorrow):** Enrich missing fields. Restock day + cheapest day via Google Places API + LLM extraction from review text. Add photos, Facebook URLs.
+**Action taken:** Phase A shipped today (Sprint 1.5). Phase B specced as `projects/thebinmap/sprints/SPRINT_2_enrichment_spec.md` for tomorrow.
+
+### Decision: `listings.json` seed file left in place
+**Context:** Discovered a 30-store seed JSON file with 25 fabricated placeholder listings (clearly marked as such in `_meta`). Real production data lives in SQLite at `data/stores.db` (522 real Google-sourced listings). The seed file appears unused by the live site.
+**Decision:** Leave it alone. Don't risk breaking something on a Saturday afternoon. Add to housekeeping queue: investigate references, decide later.
+**Action taken:** No code change. Item added to `projects/thebinmap/status/2026-04-25.json` as low-priority TODO.
+
+### Decision: Web3Forms email-archive enhancement deferred
+**Context:** Mike wanted form submissions to land in BOTH info@thebinmap.com (archive) AND mikebennett637@gmail.com (real-time). Current state: Web3Forms delivers only to gmail. The Hostinger forwarder + "save copies" toggle works perfectly for direct emails — just doesn't apply to Web3Forms because Web3Forms bypasses info@ entirely.
+**Decision:** Park the work. Gmail-only delivery is sufficient. Future: switch Web3Forms delivery destination to info@thebinmap.com so the existing Hostinger forwarder creates dual archive.
+**Estimated time when revisited:** ~20 min (Web3Forms account login + key swap + 3-file find/replace + push + test).
+
+### Decision: TheBinMap social account setup deferred to dedicated future session
+**Context:** Mike asked whether TheBinMap needed presence on X, LinkedIn, Facebook, etc.
+**Decision:** Three-tier strategy locked:
+- **Tier 1 (build when ready):** TikTok (highest leverage — #binstore has 100M+ views), Instagram (cross-post from TikTok), Facebook Page (credibility + group cross-promo)
+- **Tier 2 (optional):** YouTube Shorts, X/Twitter, Reddit (as discovery channel, not brand presence)
+- **Tier 3 (skip):** LinkedIn (wrong demographic), Threads, Pinterest
+**Sequencing:** Don't set up accounts until ready to commit to a content-production rhythm. Empty/silent accounts signal "abandoned project" worse than no account at all.
+**Action taken:** Strategy captured for future session. Not setting up today.
+
+### Decision: `openNow` badge needs client-side computation in Sprint 2
+**Context:** Sprint 1.5 added an "OPEN NOW" / "CLOSED NOW" badge derived from Google's `openNow` field stored in `hours_json`. Discovered that field is a snapshot from when data was fetched (April 21), not real-time.
+**Decision:** In Sprint 2, replace stored `openNow` with client-side or build-time computation against the `periods` array. Always accurate, no API cost.
+**Action taken:** Added to Sprint 2 spec.
+
+---
+

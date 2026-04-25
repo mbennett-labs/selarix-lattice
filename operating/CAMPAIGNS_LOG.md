@@ -150,3 +150,25 @@ This log is the single source of truth for outreach activity. **One entry per ca
 
 *Campaigns Log v1 | SELARIX / Quantum Shield Labs LLC | 2026-04-25*
 *Test the link. Watch the metrics. Document the lesson. Or repeat the mistake.*
+
+## Correction: 2026-03-24 Brevo therapist outreach diagnosis
+
+**Previous entry stated:** "Broken CTA link" (`https://app.brevo.com/automation/edit/%7B%7B%20contact.LISTING_URL%20%7D%7D` shown in editor).
+**Corrected diagnosis:** The Brevo editor was displaying the unrendered template variable. The actual sent email rendered the variable correctly to a working URL like `https://therapistindex.com/?geodir_search=1&spost_type=gd_place&s=Creative+Psychological+Health+Services` (a search URL, not a direct listing URL).
+**Real conclusion:** 0.7% reaction rate (~6 reactions / 870 sends) IS the genuine signal for cold B2B therapist outreach. Bottom of industry benchmark (0.5%-3%). Strategy genuinely underperformed at low-traffic stage; not a technical bug.
+**Probable causes:** Search URL adds friction step (recipient lands on search results, not their listing). Presumptuous framing. No social proof. Site traffic too low (~9 clicks/month) to make claim ROI clear to therapists.
+**Implication:** Claim outreach is a year-2 lever AFTER site has real traffic. Single-sponsor partnership (per Rush playbook) is worth exploring instead.
+
+## 2026-04-25 — TheBinMap form-submission verification campaign
+
+**Goal:** Verify Web3Forms infrastructure is functioning end-to-end before relying on it for real submissions.
+**Method:** Manual test submissions through `/contact/`, `/submit/`, and direct emails to info@thebinmap.com.
+**Results:**
+- Contact form: ✅ delivers to mikebennett637@gmail.com (verified 2 submissions)
+- Submit form: ✅ delivers all fields correctly (Fake Store / Mystryville CA / Nowhere etc.)
+- Direct email to info@thebinmap.com from Yahoo: ✅ forwards to gmail AND keeps copy in info@ inbox
+- Hostinger forwarder configuration: ✅ all 6 mailboxes (info, michael, privacy, legal, support, hello @thebinmap.com) configured with "Save copies of forwarded emails" enabled
+**Conclusion:** Email infrastructure is operational. One known gap: Web3Forms bypasses info@thebinmap.com entirely (delivers only to gmail). Reconfiguration parked for future session — gmail-only delivery is sufficient for current volume.
+
+---
+
