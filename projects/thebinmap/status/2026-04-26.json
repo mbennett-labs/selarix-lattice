@@ -1,0 +1,44 @@
+{
+  "date": "2026-04-26",
+  "sprint": "Sprint 2: Google Places Enrichment + Restock Day Extraction",
+  "operator": "Mike Bennett + Claude Code",
+  "status": "complete",
+  "commits": [
+    "89029d2 feat(enrichment): add Google Places enrichment pipeline + enrich 521 stores",
+    "fb9da78 feat(listings): display enrichment data — photos, restock day, pricing, live openNow",
+    "5ca1946 chore: add enrichment run backup + log"
+  ],
+  "metrics": {
+    "total_stores": 522,
+    "enriched": 521,
+    "with_photos": 460,
+    "with_restock_day": 35,
+    "with_cheapest_day": 36,
+    "with_price_ladder": 25,
+    "confidence_high": 5,
+    "confidence_medium": 14,
+    "confidence_low": 49,
+    "confidence_none": 453
+  },
+  "targets": {
+    "restock_day_30pct": { "target": 157, "actual": 35, "met": false },
+    "photos_70pct": { "target": 365, "actual": 460, "met": true },
+    "no_data_corruption": { "met": true },
+    "cost_under_15": { "actual_usd": 8.93, "met": true }
+  },
+  "cost_usd": 8.93,
+  "files_changed": [
+    "data/stores.db",
+    "src/data/db.ts",
+    "src/pages/store/[slug].astro",
+    "scripts/enrich.py",
+    "data/stores.db.bak.20260426-094057"
+  ],
+  "notes": [
+    "Google Places API returns only 5 reviews per place — limits restock extraction signal",
+    "Photos target exceeded (88% vs 70-90% target)",
+    "Restock extraction below target (6% vs 30-50%) due to API review limit, not quality",
+    "Client-side openNow replaces stale build-time computation",
+    "Competitor sighting: liquidationmap.com indexing same stores"
+  ]
+}
